@@ -6,14 +6,22 @@ module.exports.index = async (req, res) => {
     deleted: false,
   });
 
-  products.forEach((item) => {
+  // products.forEach((item) => {
+  //   item.priceNew = (
+  //     (item.price * (100 - item.discountPercentage)) /
+  //     100
+  //   ).toFixed(0);
+  // });
+
+  const newProducts = products.map((item) => {
     item.priceNew = (
       (item.price * (100 - item.discountPercentage)) /
       100
     ).toFixed(0);
+    return item;
   });
 
-  console.log(products);
+  console.log(newProducts);
 
   res.render("client/pages/products/index", {
     pageTittle: "Danh sach san pham",
