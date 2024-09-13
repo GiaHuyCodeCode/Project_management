@@ -39,6 +39,14 @@ module.exports.index = async (req, res) => {
     find.status = req.query.status;
   }
 
+  let keyword = "";
+
+  if (req.query.keyword) {
+    keyword = req.query.keyword;
+    const regex = new RegExp(keyword, "i");
+    find.title = regex;
+  }
+
   const products = await Product.find(find);
 
   console.log(products);
@@ -47,5 +55,6 @@ module.exports.index = async (req, res) => {
     pageTittle: "Trang San Pham",
     products: products,
     filterStatus: filterStatus,
+    keyword: keyword,
   });
 };
