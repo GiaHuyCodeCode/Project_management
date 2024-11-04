@@ -107,6 +107,10 @@ module.exports.changeMulti = async (req, res) => {
             position: position,
           }
         );
+        req.flash(
+          "success",
+          `Doi vi tri cua ${ids.length} san pham thanh cong!!!`
+        );
       }
 
     default:
