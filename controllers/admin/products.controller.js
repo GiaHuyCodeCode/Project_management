@@ -60,6 +60,8 @@ module.exports.changeStatus = async (req, res) => {
 
   await Product.updateOne({ _id: id }, { status: status });
 
+  req.flash("success", "Cap nhat trang thai thanh cong!!!");
+
   res.redirect("back");
 };
 // [PATCH] /admin/products/change-multi
@@ -70,10 +72,18 @@ module.exports.changeMulti = async (req, res) => {
   switch (type) {
     case "active":
       await Product.updateMany({ _id: { $in: ids } }, { status: "active" });
+      req.flash(
+        "success",
+        `Cap nhat trang thai cua ${ids.length} san pham thanh cong!!!`
+      );
       break;
 
     case "inactive":
       await Product.updateMany({ _id: { $in: ids } }, { status: "inactive" });
+      req.flash(
+        "success",
+        `Cap nhat trang thai cua ${ids.length} san pham thanh cong!!!`
+      );
       break;
 
     case "delete-all":
