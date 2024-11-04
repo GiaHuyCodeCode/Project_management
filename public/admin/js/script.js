@@ -106,6 +106,16 @@ if (formChangeMulti)
       "input[name='id']:checked"
     );
 
+    const typeChange = e.target.elements.type.value;
+    console.log(typeChange);
+
+    if (typeChange == "delete-all") {
+      const isConfirm = confirm(
+        "Ban co chac chan muon xoa nhung san pham nay khong?"
+      );
+      if (!isConfirm) return;
+    }
+
     if (inputsChecked.length > 0) {
       let ids = [];
       const inputIds = formChangeMulti.querySelector("input[name='ids']");
